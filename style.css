@@ -1,0 +1,37 @@
+html, body {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+#background img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#background .bg-img {
+    position: relative;
+    z-index: 1;
+}
+
+#background .front-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#field {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
