@@ -5,12 +5,23 @@ var limit = 100;
 var nodes = 1000;
 var margin = 20;
 var points = [];
+var startbtn = document.getElementById("field");
 
+var frontImg = document.querySelector('.front-img');
+var parallaxSpeed = 0.5;
+
+function updateParallax() {
+    if (!frontImg) return;
+    frontImg.style.transform = 'translateY(' + (-window.scrollY * parallaxSpeed) + 'px)';
+}
+
+window.addEventListener('scroll', updateParallax);
 function resizeCanvas() {
     mycanvas.width = document.documentElement.scrollWidth;
     mycanvas.height = document.documentElement.scrollHeight;
 }
 
+// Spread points across the current canvas size (recomputed after each resize).
 function randomizePoints() {
     points = [];
     for (let i = 0; i < nodes; i++) {
@@ -18,7 +29,7 @@ function randomizePoints() {
 
         point.x = Math.floor(Math.random() * (mycanvas.width - margin * 2) + margin);
         point.y = Math.floor(Math.random() * (mycanvas.height - margin * 2) + margin);
-        point.opacity = 0.1;
+        point.opacity = 1;
 
         points.push(point);
     }
@@ -27,16 +38,16 @@ function randomizePoints() {
 var point_a = new set_point_elm();
 point_a.x = 250;
 point_a.y = 250;
-
-// Wait for everything (including bg.jpg) to load so scrollHeight is accurate.
 window.addEventListener('load', function () {
     resizeCanvas();
     randomizePoints();
+    updateParallax();
 });
 
 window.addEventListener('resize', function () {
     resizeCanvas();
     randomizePoints();
+    updateParallax();
 });
 
 document.addEventListener('mousemove', function (e) {
@@ -84,3 +95,4 @@ function set_point_elm() {
         ctx.stroke();
     };
 }
+//to add - cobweb!

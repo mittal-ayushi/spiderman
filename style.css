@@ -1,37 +1,88 @@
+
+@font-face {
+    font-family: "MyFont";
+    src: url("AvengeanceHeroicAvengerNormal-Bz7d.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "MyFont", sans-serif;
+    color: white;
+    font-weight: normal;
+    font-size: 80px;
+    text-align: center;
+}
+
 html, body {
     margin: 0;
     overflow-x: hidden;
-    overflow-y: auto;
 }
 
+/* Pinned to the viewport so it stays put while the 3 screens scroll over it */
 #background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: -1;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -2;
 }
 
 #background img {
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
 }
 
 #background .bg-img {
-    position: relative;
+    height: 100%;
+    object-fit: cover;
     z-index: 1;
 }
 
 #background .front-img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: auto;
     z-index: 2;
+    will-change: transform;
 }
 
 #field {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+main {
+    position: relative;
+    z-index: 4;
+}
+
+.screen {
+    min-height: 160vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.screen:nth-of-type(1) {
+    justify-content: flex-start;
+    padding-top: 10vh;
+}
+.screen:nth-of-type(3) {
+    justify-content: flex-end;
+}
+video {
+    mix-blend-mode: screen;   /* removes black-ish backgrounds */
 }
