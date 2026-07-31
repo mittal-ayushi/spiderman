@@ -17,9 +17,9 @@ h1 {
 html, body {
     margin: 0;
     overflow-x: hidden;
+    touch-action: none;
 }
 
-/* Pinned to the viewport so it stays put while the 3 screens scroll over it */
 #background {
     position: fixed;
     top: 0;
@@ -84,5 +84,28 @@ main {
     justify-content: flex-end;
 }
 video {
-    mix-blend-mode: screen;   /* removes black-ish backgrounds */
+    mix-blend-mode: screen;
+}
+ 
+/* Hiding Scrollbar for the aesthetic */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none; 
+}
+
+ 
+#start {
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: "MyFont", sans-serif;
+font-size: 25px;
+background: maroon;
+color: white;
+border: 3px solid #1d3557;
+padding: 14px 36px;
+}
+
+#start:hover {
+    transform: scale(1.08);
 }

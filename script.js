@@ -2,7 +2,7 @@ var mycanvas = document.getElementById("field");
 var ctx = mycanvas.getContext("2d");
 var pointsize = 5;
 var limit = 100;
-var nodes = 1000;
+var nodes = 3000;
 var margin = 20;
 var points = [];
 var startbtn = document.getElementById("field");
@@ -20,8 +20,6 @@ function resizeCanvas() {
     mycanvas.width = document.documentElement.scrollWidth;
     mycanvas.height = document.documentElement.scrollHeight;
 }
-
-// Spread points across the current canvas size (recomputed after each resize).
 function randomizePoints() {
     points = [];
     for (let i = 0; i < nodes; i++) {
@@ -64,7 +62,6 @@ document.addEventListener('mousemove', function (e) {
         );
 
         if (dis_val <= limit) {
-            // Normalize to a 0-1 alpha value instead of an unbounded percentage
             point_a.node_opacity = (limit - dis_val) / limit;
             point_a.link_node(elm.x, elm.y);
         }
@@ -96,3 +93,46 @@ function set_point_elm() {
     };
 }
 //to add - cobweb!
+
+//mouse scroll logic
+window.addEventListener('wheel',function(e){
+    e.preventDefault();
+}, { passive :false});
+
+window.addEventListener('touchmove',function(e){
+    e.preventDefault();
+}, { passive :false});
+
+window.addEventListener('keydown',function(e){
+    var keys = ['ArrowUp','ArrowDown','PageUp','PageDown']
+    if (keys.indexOf(e.key) !== -1) {
+        e.preventDefault();
+    }});
+
+var mouseScrollY = window.innerHeight / 2;
+ 
+document.addEventListener('mousemove', function (e) {
+    mouseScrollY = e.clientY;
+});
+ 
+function autoScrollLoop() {
+    var center = window.innerHeight / 2;
+    var deadZonePx = window.innerHeight * 0.15;
+    var maxSpeed = 14; 
+ 
+    var offset = mouseScrollY - center;
+    var distanceIntoZone = Math.abs(offset) - deadZonePx;
+ 
+    if (distanceIntoZone > 0) {
+        var maxDistance = center - deadZonePx;
+        var normalized = Math.min(distanceIntoZone / maxDistance, 1);
+        var direction = offset > 0 ? 1 : -1;
+        window.scrollBy(0, normalized * maxSpeed * direction);
+    }
+ 
+    requestAnimationFrame(autoScrollLoop);
+}
+requestAnimationFrame(autoScrollLoop);
+
+
+
