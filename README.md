@@ -4,6 +4,10 @@ Its a small fan project based on spiderman!!
 ## What It Actually Is
 
 When running index.html, we scroll through three texts and artwork
+Texts -
+“In every other universe, Gwen Stacy falls for Spider-Man.”
+“And in every other universe...”
+“It doesn’t end well.”
 
 ## Stuff I Used
 Just plain HTML, CSS, and JS. Its a direct HTML page that can be opened in a browser.
