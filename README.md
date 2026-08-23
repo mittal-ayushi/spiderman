@@ -1,5 +1,8 @@
 # Spiderman
-Its a small fan project based on spiderman!!
+Its a small fan website which includes fun CSS elements and parallax scroll based on spiderman.
+
+Demo Link - https://spideyanimation.netlify.app/
+To run locally - Clone the repo/Download the files and run index.html
 
 ## What It Actually Is
 
